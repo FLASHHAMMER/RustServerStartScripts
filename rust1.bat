@@ -48,7 +48,7 @@ RustDedicated.exe -batchmode ^
 +server.queryport 26015  ^
 +rcon.port 26016  ^
 +server.port 26017  ^
-+app.port 26024  ^
++app.port 26085  ^
 +server.levelurl "https://www.dropbox.com/scl/fi/lalalarala/Isla-Nublar-1.4.0-FH.map?rlkey=lalalalalala&dl=1"  ^
 +server.maxplayers 50  ^
 +server.tags "weekly,SA"  ^
