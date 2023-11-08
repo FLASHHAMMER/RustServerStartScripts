@@ -6,19 +6,19 @@ powershell -Command "$TIME_OF_DAY=wmic path win32_utctime get hour"
 
 powershell -Command "$env:TIME_OF_DAY=$TIME_OF_DAY -replace '[^0-9].*' , ''"
 
-powershell -Command "if(!$env:TIME_OF_DAY -eq 6){ 'Trying app update ...' }"
+powershell -Command "if([int]$env:TIME_OF_DAY -ne 12){ 'Trying app update ...' }"
 
-powershell -Command "if(!$env:TIME_OF_DAY -eq 6){ C:\servers\steamcmd.exe  +login anonymous  +force_install_dir C:\servers\rust3\  +app_update 258550 validate  +quit }"
+powershell -Command "if([int]$env:TIME_OF_DAY -ne 12){ C:\servers\steamcmd.exe  +login anonymous  +force_install_dir C:\servers\rust3\  +app_update 258550 validate  +quit }"
 
 echo Changing to Rust 3 server folder ...
 
 cd C:\servers\rust3
 
-powershell -Command "if(!$env:TIME_OF_DAY -eq 6){ Invoke-WebRequest -URI https://umod.org/games/rust/download -OutFile oxide.zip }"
+powershell -Command "if([int]$env:TIME_OF_DAY -ne 12){ Invoke-WebRequest -URI https://umod.org/games/rust/download -OutFile oxide.zip }"
 
-powershell -Command "if(!$env:TIME_OF_DAY -eq 6){ Expand-Archive oxide.zip -Force -DestinationPath 'C:\servers\rust3\' }"
+powershell -Command "if([int]$env:TIME_OF_DAY -ne 12){ Expand-Archive oxide.zip -Force -DestinationPath 'C:\servers\rust3\' }"
 
-powershell -Command "if(!$env:TIME_OF_DAY -eq 6){ foreach ($file in Get-ChildItem 'C:\servers\rust3\oxide\plugins' -Name -Include '*.cs'){ $umodUrl='https://umod.org/plugins/' + $file; try { $ouputFile='C:\servers\rust3\oxide\plugins\' + $file ;Start-Sleep -Seconds 2; Invoke-WebRequest -URI $umodUrl -OutFile $ouputFile } catch { $fileError= 'C:\servers\rust3\oxide\logs\' + $file + 'UmodError.txt'; $file + ' - ' + $umodUrl + ' - ' + $_.Exception > $fileError } } }"
+powershell -Command "if([int]$env:TIME_OF_DAY -ne 12){ foreach ($file in Get-ChildItem 'C:\servers\rust3\oxide\plugins' -Name -Include '*.cs'){ $umodUrl='https://umod.org/plugins/' + $file; try { $ouputFile='C:\servers\rust3\oxide\plugins\' + $file ;Start-Sleep -Seconds 2; Invoke-WebRequest -URI $umodUrl -OutFile $ouputFile } catch { $fileError= 'C:\servers\rust3\oxide\logs\' + $file + 'UmodError.txt'; $file + ' - ' + $umodUrl + ' - ' + $_.Exception > $fileError } } }"
 
 echo Checking if it is WIPE DAY...
 
