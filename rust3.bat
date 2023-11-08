@@ -46,7 +46,7 @@ RustDedicated.exe -batchmode  ^
 +server.queryport 26021  ^
 +rcon.port 26022  ^
 +server.port 26023  ^
-+app.port 26024  ^
++app.port 26090  ^
 +server.level "Procedural Map"  ^
 +server.seed 1378081518  ^
 +server.worldsize 6000  ^
